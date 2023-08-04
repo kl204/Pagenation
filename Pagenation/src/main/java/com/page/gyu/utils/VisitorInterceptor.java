@@ -101,11 +101,6 @@ public class VisitorInterceptor implements HandlerInterceptor {
 		
 		MemberVO memberVo = (MemberVO)modelAndView.getModel().get("member");
 		
-		
-		System.out.println("(interceptor) id : " + memberVo.getUserId());
-		System.out.println("(interceptor) pw : " + memberVo.getUserPass());
-		System.out.println("(interceptor) grade : " + memberVo.getUserGrade());
-		
 		System.out.println("(postHandle)memberVo : " + memberVo);
 		
 		//로그인 세션 확인

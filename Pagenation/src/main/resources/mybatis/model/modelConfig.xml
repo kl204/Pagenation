@@ -4,5 +4,6 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.page.gyu.vo.BoardVO" alias="BoardVO"></typeAlias>
+		<typeAlias type="com.page.gyu.vo.CommentVo" alias="CommentVo"></typeAlias>
 	</typeAliases>
 </configuration>

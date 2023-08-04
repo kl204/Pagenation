@@ -42,6 +42,9 @@ public class BoardController {
 	@Autowired
 	private BoardService visitorService;
 	
+	@Autowired
+	private CommentService commentService;
+	
 	@RequestMapping(value="/viewLogin.do", method=RequestMethod.GET)
 	public ModelAndView viewLogin() {
 		ModelAndView mav = null;
@@ -172,6 +175,12 @@ public class BoardController {
 			mav.setViewName("/content");
 		}
 		
+		//댓글 리스트 가져오기
+		ArrayList<CommentVo> commentLists = commentService.SearchAllComment();
+		
+		System.out.println("(boardController) commentList : " + commentLists);
+		
+		mav.addObject("commentLists",commentLists);
 		mav.addObject("list", list );
 		
 		return mav;

@@ -114,14 +114,14 @@ public class BoardService {
 	public int loginCheck(MemberVO memberVo) {
 		int flag = 0;
 		String id = memberVo.getUserId();
+		String pw = memberVo.getUserPass();
 		
 		 if(id.equals("admin") || id.equals("user1")) {
-			 flag = 1;
+			 if(pw.equals("1234")) {
+				 flag = 1;
+			 }
+			 
 		 }
-		
-		
-		 
-		
 		return flag;
 	}
 

@@ -72,7 +72,7 @@
    <definition name="/visitor/loginForm" extends="baseLayout">
       <put-attribute name="title" value="Board Regist" />
       <put-attribute name="body" value="/WEB-INF/views/board/loginForm.jsp" />
-      
    </definition>
+   
 
 </tiles-definitions>

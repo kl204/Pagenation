@@ -31,7 +31,25 @@
 		</tr>	
 		<tr>
 			<td colspan="4">파일 : ${list.attatchData} <br> <a href="download.do?fileName=${list.attatchData}">다운로드</a></td>
+		</tr>		
+		<tr>
+			<td style="width:10%">댓글 작성</td>
+			<td colspan="2"> 작성자 : <input type="text" size=10 id="commentWriter"/><br>
+							 내용 : <input type="text" size=40 id="commentContent"/></td>
+							 <td><button type="button" id="registComment">등록</button></td>
 		</tr>
+		<tr>
+			<td colspan="4">전체 댓글 1개</td>
+		</tr>
+		<!-- 여기다 댓글 데이터 뿌리기 -->
+
+<c:forEach var="comList" items="${commentLists}">		
+		<tr id="commentList">	
+			<td style="width:10%">${comList.writer}</td>
+			<td colspan="2">${comList.content}</td><td><button>좋아요</button> : 1 <button>싫어요</button> : 2 <button>삭제</button></td>		
+		</tr>
+</c:forEach>
+
 		<tr>
 			<td colspan ="4"><button type="button" id="returnList">방명록 돌아가기</button></td>
 		</tr>
@@ -44,6 +62,52 @@ $(document).ready(function(){
 		window.location.href = "./list.do";		
 	});
 	
+	$("#registComment").click(function() {
+		
+		let writer = $('#commentWriter').val();
+		let content = $('#commentContent').val();
+		
+		$.ajax({
+			  type: "GET", 
+			  url: "../comment/regist?writer=" + writer + "&content=" + content, 
+			  dataType: "json",
+			  success: function (data){
+			  console.log("success");
+			  console.log(data);			 
+
+			  
+			  window.location.href = "./content?textNum=" + ${list.seq};		
+			  
+			  
+			  
+/* 			  var jsonLength = Object.keys(data).length;
+			  
+			  console.log(jsonLength);
+
+			  
+			  var comment; 
+			  
+			  
+			  for (let i = 1; i < jsonLength; i++) {
+			    let str = "cm" + i.toString();
+			    console.log(str);
+			    
+			    commentList = data[str];
+			    
+			    comment += "<td style=\"width:10%\">" + commentList.writer + "</td>"
+					+ "<td colspan=\"2\">" + commentList.content + "</td><td><button>좋아요</button> : 1 <button>싫어요</button> : 2 <button>삭제</button></td>";
+			  
+			  }  
+			
+			  document.getElementById("commentList").innerHTML = comment;
+					     */	      
+			  },error: function(e){				    	    	
+				   	console.log(e);			    	  
+		   		}
+
+		});
+	
+	});
 });
 </script>
 <script type="text/javascript" src="../resources/js/book.js"></script> 

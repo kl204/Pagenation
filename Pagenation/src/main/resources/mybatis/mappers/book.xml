@@ -14,6 +14,33 @@
 		<result property="attatchData" column="attatch_data"/>
 	</resultMap>
 	
+	<resultMap id="commentMap" type="CommentVo">
+		<id property ="seq" column="seq"></id>
+		<result property ="writer" column="writer"/>
+		<result property ="content" column="content"/>
+		<result property ="commentLike" column="comment_like"/>
+		<result property ="commentHate" column="comment_hate"/>
+		<result property ="boardSeq" column="board_seq"/>
+		<result property ="commentSeq" column="comment_seq"/>
+	</resultMap>
+
+<!-- 댓글 쿼리 -->
+	<!-- 댓글 등록 -->
+	<select id="insertComment" parameterType="CommentVo">
+		<![CDATA[
+			insert into comment_table(writer, content) values(#{writer},#{content}); 
+		]]>
+	</select>	
+	
+	<!-- 댓글 전체 리스트 -->
+	<select id="SearchAllComment" resultMap="commentMap" resultType="CommentVo">
+		<![CDATA[
+			select * from comment_table
+		]]>
+	</select>		
+	
+	
+	
 <!-- #방명록 쿼리 -->
 	
 	<!-- 전체 방명록 리스트 -->
